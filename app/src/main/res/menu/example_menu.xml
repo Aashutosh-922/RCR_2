@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Home"
+        android:title="@string/home"
+        android:icon="@drawable/threedotoption"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/User"
+        android:title="@string/profile"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/admin"
+        android:title="@string/admin"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/Team"
+        android:title="@string/team_rnxg"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/Aboutsggs"
+        android:title="@string/about_sggs"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/AboutRNXG"
+        android:title="@string/about_rnxg"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/Logout"
+        android:title="@string/logout"
+        android:onClick="signout"
+        app:showAsAction="never"/>
+</menu>

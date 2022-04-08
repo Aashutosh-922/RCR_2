@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/aboutsggsandroidsmall"
+    android:padding="10dp"
+    tools:context=".AboutSGGS">
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView75"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/shri_guru_gobind_singhji_institute_of_engineering_and_technology_sggsiet_nanded_is_one_of_the_promising_leader_institutions_in_technical_education_research_and_technology_transfer_since_its_inception_the_institute_is_dedicated_to_students_centric_learning_and_believes_in_pursuing_academic_excellence_it_is_having_neat_clean_and_green_campus_spread_over_land_of_46_acres_it_receives_100_grant_in_aid_from_government_of_maharashtra_the_institute_offers_10_undergraduate_and_10_postgraduate_programs_it_also_offers_ph_d_programs_in_most_of_the_areas_of_engineering_under_swami_ramanand_teerth_marathwada_university_nanded_and_is_also_selected_as_research_center_for_faculty_under_qip_of_ministry_of_hrd_government_of_india_new_delhi_institute_boasts_for_having_25_placement_mnc_partners_average_placement_record_for_last_five_years_is_above_60_training_and_placement_cell_maintain_a_strong_bond_between_institute_and_the_industry_the_institute_is_having_a_very_active_alumni_network_with_seaa_sggs_engineers_alumni_association_as_its_front_end_registered_organization"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView79"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Achivements">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageview20"
+                android:layout_width="385dp"
+                android:layout_height="339dp"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxgach1" />
+
+            <ImageView
+                android:id="@+id/imageview21"
+                android:layout_width="383dp"
+                android:layout_height="357dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0021" />
+
+            <ImageView
+                android:id="@+id/imageview22"
+                android:layout_width="383dp"
+                android:layout_height="410dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0022" />
+
+            <ImageView
+                android:id="@+id/imageview23"
+                android:layout_width="381dp"
+                android:layout_height="388dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0023" />
+
+            <ImageView
+                android:id="@+id/imageview24"
+                android:layout_width="380dp"
+                android:layout_height="377dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0024" />
+
+            <ImageView
+                android:id="@+id/imageview25"
+                android:layout_width="377dp"
+                android:layout_height="390dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0025" />
+
+            <ImageView
+                android:id="@+id/imageview26"
+                android:layout_width="374dp"
+                android:layout_height="371dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0026" />
+
+            <ImageView
+                android:id="@+id/imageview27"
+                android:layout_width="372dp"
+                android:layout_height="391dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0027" />
+
+            <ImageView
+                android:id="@+id/imageview28"
+                android:layout_width="374dp"
+                android:layout_height="413dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0028" />
+
+            <ImageView
+                android:id="@+id/imageview29"
+                android:layout_width="373dp"
+                android:layout_height="383dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0029" />
+
+            <ImageView
+                android:id="@+id/imageview30"
+                android:layout_width="373dp"
+                android:layout_height="446dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rnxg_open_house_meet_2021_page_0030" />
+
+                    </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

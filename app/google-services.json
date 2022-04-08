@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "460574605722",
+    "project_id": "rnxg-component-register-3391f",
+    "storage_bucket": "rnxg-component-register-3391f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460574605722:android:ca77f83013b02db6b13a23",
+        "android_client_info": {
+          "package_name": "com.example.rcr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460574605722-kj2gv7caqfs0ldokknb0dctv4c5lknam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxfCwphClnrdasiweJB3Qog8P13gZtgHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460574605722-kj2gv7caqfs0ldokknb0dctv4c5lknam.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

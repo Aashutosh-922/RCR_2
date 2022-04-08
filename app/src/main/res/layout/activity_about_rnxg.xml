@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/aboutrnxgandroidsmall"
+    android:layout_height="match_parent"
+    tools:context=".AboutRNXG">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="408dp"
+        android:layout_height="729dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="3dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView73"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:text="TAGLINE : DO ROBOTICS FOR LIFE RNXG is the club which quenches the thirst of all robo-minds. RNXG provides a platform for students of all departments and all years to explore their talents in the technical world of their interest &amp; helps them to ignite the fire of innovation in their minds. This is a 24/7 open platform for the students of institute to develop their creative performance. This club will participate in much many exhibitions that takes place in various institute.  At RNXG, students are engaged in various activities such as arranging and attending lecture series, workshops, project exhibitions and competitions. The main objective of Robotics for Next Generation is to make every nook and corner of SGGSIE&amp;T campus technically sound and active in the world of Robotics."
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
