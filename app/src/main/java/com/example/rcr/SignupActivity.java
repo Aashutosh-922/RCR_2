@@ -1,22 +1,35 @@
 package com.example.rcr;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -35,16 +48,23 @@ public class SignupActivity extends AppCompatActivity {
     FirebaseAuth Auth;
     FirebaseDatabase database;
     DatabaseReference reference;
+
+
     String Name,Email,Password,confirmation,domain_selected,branch_selected,year_selected;
+    private GoogleSignInClient mGoogleSignInClient;
+    private ImageButton googlesignin;
+    private static int RC_SIGN_IN=100;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        name = findViewById(R.id.editTextTextPersonName);
+        name = findViewById(R.id.editTextTextPersonName2);
         mail = findViewById(R.id.editTextTextEmailAddress2);
         confirm = findViewById(R.id.editTextNumberPassword2);
         password = findViewById(R.id.editTextNumberPassword);
-
+//        googlesignin=findViewById(R.id.sign_in_button);
         database=FirebaseDatabase.getInstance();
         reference=database.getReference();
         Auth = FirebaseAuth.getInstance();
@@ -52,6 +72,21 @@ public class SignupActivity extends AppCompatActivity {
         Branch = findViewById(R.id.spinner3);
 
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
+        SignInButton signInButton=findViewById(R.id.google_login_button);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signIn();
+            }
+        });
         List<String> branch = new ArrayList<>();
         branch.add(0, "Select branch:");
         branch.add("IT");
@@ -145,60 +180,113 @@ public class SignupActivity extends AppCompatActivity {
                 domain.setSelection(0);
             }
         });
-
-        Button signup = findViewById(R.id.register);
-
-        signup.setOnClickListener(v -> {
-             Name = name.getText().toString().trim();
-             Email = mail.getText().toString().trim();
-             Password = password.getText().toString().trim();
-             confirmation = confirm.getText().toString().trim();
-             domain_selected= domain.getSelectedItem().toString();
-             branch_selected=Branch.getSelectedItem().toString();
-             year_selected= Year.getSelectedItem().toString();
-
-
-            if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password) || TextUtils.isEmpty(confirmation))
-                Toast.makeText(SignupActivity.this, "You missed something:", Toast.LENGTH_SHORT).show();
-            else if (!Password.equals(confirmation))
-                Toast.makeText(SignupActivity.this, "The entered and confirmation password doesn't match.", Toast.LENGTH_SHORT).show();
-            else if (Password.length() < 6)
-                password.setError("The password length should be greater than 6.");
+//        Button signup = findViewById(R.id.signup);
+        if(TextUtils.isEmpty(name.getText().toString()) && TextUtils.isEmpty(mail.getText().toString()) && TextUtils.isEmpty(password.getText().toString())&&
+        TextUtils.isEmpty(confirm.getText().toString()) )
+        {
+//            signup.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+//            signup.setVisibility(View.VISIBLE);
+        }
 
 
+//
+//        signup.setOnClickListener(v -> {
+//             Name = name.getText().toString().trim();
+//             Email = mail.getText().toString().trim();
+//             Password = password.getText().toString().trim();
+//             confirmation = confirm.getText().toString().trim();
+//             domain_selected= domain.getSelectedItem().toString();
+//             branch_selected=Branch.getSelectedItem().toString();
+//             year_selected= Year.getSelectedItem().toString();
+//
+//
+//            if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password) || TextUtils.isEmpty(confirmation))
+//                Toast.makeText(SignupActivity.this, "You missed something:", Toast.LENGTH_SHORT).show();
+//            else if (!Password.equals(confirmation))
+//                Toast.makeText(SignupActivity.this, "The entered and confirmation password doesn't match.", Toast.LENGTH_SHORT).show();
+//            else if (Password.length() < 6)
+//                password.setError("The password length should be greater than 6.");
+//
+//
+//
+//            Auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
+//                if (task.isSuccessful()) {
+//                    FirebaseUser user=Auth.getCurrentUser();
+//                    Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+//                    if (user != null) {
+//                       user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                           @Override
+//                           public void onSuccess(Void unused) {
+//                               reference.child("Users").child(Name).child("Name").setValue(Name);
+//                               reference.child("Users").child(Name).child("Email").setValue(Email);
+//                               reference.child("Users").child(Name).child("Password").setValue(Password);
+//                               reference.child("Users").child(Name).child("Branch").setValue(branch_selected);
+//                               reference.child("Users").child(Name).child("Year").setValue(year_selected);
+//                               reference.child("Users").child(Name).child("Domain").setValue(domain_selected);
+//                             Intent user= new Intent(SignupActivity.this,Profile.class);
+//                              user.putExtra("Userid",Name);
+//
+//                               Toast.makeText(SignupActivity.this, "Email verification has been sent.", Toast.LENGTH_SHORT).show();
+//                           }
+//                       }).addOnFailureListener(new OnFailureListener() {
+//                           @Override
+//                           public void onFailure(@NonNull Exception e) {
+//                               Toast.makeText(SignupActivity.this, "Email is not verified.", Toast.LENGTH_SHORT).show();
+//                           }
+//                       });
+//                    }
+//
+//                } else
+//                    Toast.makeText(SignupActivity.this, "Registration unsuccessful", Toast.LENGTH_SHORT).show();
+//            });
+//
+//
+//        });
 
-            Auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    FirebaseUser user=Auth.getCurrentUser();
-                    Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                    if (user != null) {
-                       user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                           @Override
-                           public void onSuccess(Void unused) {
-                               reference.child("Users").child(Name).child("Name").setValue(Name);
-                               reference.child("Users").child(Name).child("Email").setValue(Email);
-                               reference.child("Users").child(Name).child("Password").setValue(Password);
-                               reference.child("Users").child(Name).child("Branch").setValue(branch_selected);
-                               reference.child("Users").child(Name).child("Year").setValue(year_selected);
-                               reference.child("Users").child(Name).child("Domain").setValue(domain_selected);
-//                               Intent user= new Intent(SignupActivity.this,Profile.class);
-//                               user.putExtra("Userid",Name);
+   }
+    private void signIn() {
+//        googlesignin.setPressed(true);
 
-                               Toast.makeText(SignupActivity.this, "Email verification has been sent.", Toast.LENGTH_SHORT).show(); 
-                           }
-                       }).addOnFailureListener(new OnFailureListener() {
-                           @Override
-                           public void onFailure(@NonNull Exception e) {
-                               Toast.makeText(SignupActivity.this, "Email is not verified.", Toast.LENGTH_SHORT).show();
-                           }
-                       });
-                    }
-                   
-                } else
-                    Toast.makeText(SignupActivity.this, "Registration unsuccessful", Toast.LENGTH_SHORT).show();
-            });
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
 
-        });
+    }
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personGivenName = acct.getGivenName();
+                String personFamilyName = acct.getFamilyName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                Uri personPhoto = acct.getPhotoUrl();
+            }
+            Intent i= new Intent(getApplicationContext(),Index.class);
+            startActivity(i);
+            // Signed in successfully, show authenticated UI.
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.d("Message", "signInResult:failed code=" + e.getStatusCode());
+
+        }
     }
 }

@@ -10,5 +10,7 @@
         <item>@font/bangers</item>
         <item>@font/berkshire_swash</item>
         <item>@font/cinzel_bold</item>
+        <item>@font/poppins_light</item>
+        <item>@font/poppins_medium</item>
     </array>
 </resources>
