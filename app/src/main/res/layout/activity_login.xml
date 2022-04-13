@@ -134,7 +134,8 @@
             app:layout_constraintTop_toTopOf="@+id/guideline28"
             app:layout_constraintVertical_bias="0.076"
             app:srcCompat="@drawable/loginbutton"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            android:contentDescription="@string/todo" />
 
         <TextView
             android:id="@+id/textView86"
@@ -154,7 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
-            android:text="WELCOME"
+            android:text="@string/welcome"
             android:textColor="#FFFFFF"
             android:textSize="42sp"
             app:layout_constraintBottom_toBottomOf="@+id/guideline29"

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class SignupActivity extends AppCompatActivity {
 
     String Name,Email,Password,confirmation,domain_selected,branch_selected,year_selected;
     private GoogleSignInClient mGoogleSignInClient;
-    private ImageButton googlesignin;
+    Button signup;
     private static int RC_SIGN_IN=100;
 
 
@@ -64,7 +65,7 @@ public class SignupActivity extends AppCompatActivity {
         mail = findViewById(R.id.editTextTextEmailAddress2);
         confirm = findViewById(R.id.editTextNumberPassword2);
         password = findViewById(R.id.editTextNumberPassword);
-//        googlesignin=findViewById(R.id.sign_in_button);
+
         database=FirebaseDatabase.getInstance();
         reference=database.getReference();
         Auth = FirebaseAuth.getInstance();
@@ -180,71 +181,72 @@ public class SignupActivity extends AppCompatActivity {
                 domain.setSelection(0);
             }
         });
-//        Button signup = findViewById(R.id.signup);
+        Button signup = findViewById(R.id.button3);
         if(TextUtils.isEmpty(name.getText().toString()) && TextUtils.isEmpty(mail.getText().toString()) && TextUtils.isEmpty(password.getText().toString())&&
         TextUtils.isEmpty(confirm.getText().toString()) )
         {
-//            signup.setVisibility(View.INVISIBLE);
+            signup.setVisibility(View.INVISIBLE);
         }
         else
         {
-//            signup.setVisibility(View.VISIBLE);
+
+            signup.setVisibility(View.VISIBLE);
         }
 
 
-//
-//        signup.setOnClickListener(v -> {
-//             Name = name.getText().toString().trim();
-//             Email = mail.getText().toString().trim();
-//             Password = password.getText().toString().trim();
-//             confirmation = confirm.getText().toString().trim();
-//             domain_selected= domain.getSelectedItem().toString();
-//             branch_selected=Branch.getSelectedItem().toString();
-//             year_selected= Year.getSelectedItem().toString();
-//
-//
-//            if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password) || TextUtils.isEmpty(confirmation))
-//                Toast.makeText(SignupActivity.this, "You missed something:", Toast.LENGTH_SHORT).show();
-//            else if (!Password.equals(confirmation))
-//                Toast.makeText(SignupActivity.this, "The entered and confirmation password doesn't match.", Toast.LENGTH_SHORT).show();
-//            else if (Password.length() < 6)
-//                password.setError("The password length should be greater than 6.");
-//
-//
-//
-//            Auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
-//                if (task.isSuccessful()) {
-//                    FirebaseUser user=Auth.getCurrentUser();
-//                    Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-//                    if (user != null) {
-//                       user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                           @Override
-//                           public void onSuccess(Void unused) {
-//                               reference.child("Users").child(Name).child("Name").setValue(Name);
-//                               reference.child("Users").child(Name).child("Email").setValue(Email);
-//                               reference.child("Users").child(Name).child("Password").setValue(Password);
-//                               reference.child("Users").child(Name).child("Branch").setValue(branch_selected);
-//                               reference.child("Users").child(Name).child("Year").setValue(year_selected);
-//                               reference.child("Users").child(Name).child("Domain").setValue(domain_selected);
-//                             Intent user= new Intent(SignupActivity.this,Profile.class);
-//                              user.putExtra("Userid",Name);
-//
-//                               Toast.makeText(SignupActivity.this, "Email verification has been sent.", Toast.LENGTH_SHORT).show();
-//                           }
-//                       }).addOnFailureListener(new OnFailureListener() {
-//                           @Override
-//                           public void onFailure(@NonNull Exception e) {
-//                               Toast.makeText(SignupActivity.this, "Email is not verified.", Toast.LENGTH_SHORT).show();
-//                           }
-//                       });
-//                    }
-//
-//                } else
-//                    Toast.makeText(SignupActivity.this, "Registration unsuccessful", Toast.LENGTH_SHORT).show();
-//            });
-//
-//
-//        });
+
+        signup.setOnClickListener(v -> {
+             Name = name.getText().toString().trim();
+             Email = mail.getText().toString().trim();
+             Password = password.getText().toString().trim();
+             confirmation = confirm.getText().toString().trim();
+             domain_selected= domain.getSelectedItem().toString();
+             branch_selected=Branch.getSelectedItem().toString();
+             year_selected= Year.getSelectedItem().toString();
+
+
+            if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password) || TextUtils.isEmpty(confirmation))
+                Toast.makeText(SignupActivity.this, "You missed something:", Toast.LENGTH_SHORT).show();
+            else if (!Password.equals(confirmation))
+                Toast.makeText(SignupActivity.this, "The entered and confirmation password doesn't match.", Toast.LENGTH_SHORT).show();
+            else if (Password.length() < 6)
+                password.setError("The password length should be greater than 6.");
+
+
+
+            Auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    FirebaseUser user=Auth.getCurrentUser();
+                    Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                    if (user != null) {
+                       user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                           @Override
+                           public void onSuccess(Void unused) {
+                               reference.child("Users").child(Name).child("Name").setValue(Name);
+                               reference.child("Users").child(Name).child("Email").setValue(Email);
+                               reference.child("Users").child(Name).child("Password").setValue(Password);
+                               reference.child("Users").child(Name).child("Branch").setValue(branch_selected);
+                               reference.child("Users").child(Name).child("Year").setValue(year_selected);
+                               reference.child("Users").child(Name).child("Domain").setValue(domain_selected);
+                             Intent user= new Intent(SignupActivity.this,Profile.class);
+                              user.putExtra("Userid",Name);
+
+                               Toast.makeText(SignupActivity.this, "Email verification has been sent.", Toast.LENGTH_SHORT).show();
+                           }
+                       }).addOnFailureListener(new OnFailureListener() {
+                           @Override
+                           public void onFailure(@NonNull Exception e) {
+                               Toast.makeText(SignupActivity.this, "Email is not verified.", Toast.LENGTH_SHORT).show();
+                           }
+                       });
+                    }
+
+                } else
+                    Toast.makeText(SignupActivity.this, "Registration unsuccessful", Toast.LENGTH_SHORT).show();
+            });
+
+
+        });
 
    }
     private void signIn() {

@@ -5,10 +5,13 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -19,10 +22,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class login_activity extends AppCompatActivity {
     EditText editTextTextEmailAddress, editTextTextPassword;
-    Button button3;
+    ImageButton button3;
     String username,password;
     FirebaseAuth mAuth;
-    private CheckBox checkBox;
+//    WebView webview;
+//    private CheckBox checkBox;
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -30,26 +34,20 @@ public class login_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        editTextTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
-        editTextTextPassword = findViewById(R.id.editTextTextPassword);
 
-        checkBox = findViewById(R.id.checkBox);
         mAuth = FirebaseAuth.getInstance();
+        editTextTextEmailAddress=findViewById(R.id.editTextTextEmailAddress);
+        editTextTextPassword=findViewById(R.id.editTextTextPassword);
 
-        button3 = findViewById(R.id.button3);
+//        webview.getSettings().setJavaScriptEnabled(true);
+//        webview.setWebViewClient(new WebViewClient());
+//        webview.loadUrl("");
+        button3 = findViewById(R.id.imageButton2);
         button3.setOnClickListener(v -> {
 
             username = editTextTextEmailAddress.getText().toString();
             password = editTextTextPassword.getText().toString();
-            SharedPreferences preferences = getSharedPreferences("CheckBox", MODE_PRIVATE);
-            String CheckBox = preferences.getString("remember", "");
-            if (CheckBox.equals("true")) {
 
-                Intent intent = new Intent(login_activity.this, Index.class);
-                startActivity(intent);
-            } else if (CheckBox.equals("false")) {
-                Toast.makeText(this, "please Sign In BRO!!", Toast.LENGTH_SHORT).show();
-            }
 
 
             if (TextUtils.isEmpty(username)) {
@@ -67,27 +65,7 @@ public class login_activity extends AppCompatActivity {
             }
         });
 
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()) {
-                    SharedPreferences preferences = getSharedPreferences("CheckBox", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("remember", "true");
 
-                    editor.apply();
-                    Toast.makeText(login_activity.this, "Checked", Toast.LENGTH_SHORT).show();
-                } else if (!buttonView.isChecked()) {
-                    SharedPreferences preferences = getSharedPreferences("CheckBox", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("remember", "false");
-                    editor.apply();
-                    Toast.makeText(login_activity.this, "UnChecked", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-
-        });
     }
 
 
